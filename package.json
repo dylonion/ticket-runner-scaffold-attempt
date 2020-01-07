@@ -1,0 +1,31 @@
+{
+  "name": "quasar-test-app",
+  "version": "0.0.1",
+  "description": "An app for testing the various phases of quasar app production.",
+  "productName": "Quasar Test App",
+  "cordovaId": "org.cordova.quasar.app",
+  "capacitorId": "",
+  "author": "Dylan Moylan",
+  "private": true,
+  "scripts": {
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.0.0",
+    "node-sass": "^4.13.0",
+    "quasar": "^1.0.0",
+    "sass-loader": "^8.0.0",
+    "vuex": "^3.1.2"
+  },
+  "devDependencies": {
+    "@quasar/app": "^1.0.0"
+  },
+  "engines": {
+    "node": ">= 8.9.0",
+    "npm": ">= 5.6.0",
+    "yarn": ">= 1.6.0"
+  },
+  "browserslist": [
+    "last 1 version, not dead, ie >= 11"
+  ]
+}
