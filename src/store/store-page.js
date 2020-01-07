@@ -1,5 +1,11 @@
 const state = {
-    activeForm: ''
+    activeForm: {
+        id: '',
+        fields: {
+
+        },
+    },
+
 }
 
 const mutations = {

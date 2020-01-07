@@ -65,8 +65,8 @@ export default {
             active: false,
             navs: [
               {
-                label: 'Cat 1, Nav 1',
-                to: '/',
+                label: 'Handoff Notes',
+                to: '/handoff-notes',
                 progress: 0.1
               },
               {
@@ -135,3 +135,10 @@ export default {
 }
 
 </script>
+
+<style>
+  .q-router-link--exact-active {
+    color: white !important;
+    background-color: grey !important;
+  }
+</style>

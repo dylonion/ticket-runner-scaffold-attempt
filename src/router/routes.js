@@ -6,6 +6,7 @@ const routes = [
     children: [
       { path: '', component: () => import('pages/Index.vue') },
       { path: '/testpage', component: () => import('pages/Testpage.vue')},
+      { path: '/handoff-notes', component: () => import('pages/cmeTabs/HandoffNotes.vue')},
       { path: '/form-one-start', component: () => import('pages/cmeTabs/FormOneStart.vue')},
       { path: '/form-two-start', component: () => import('pages/cmeTabs/FormTwoStart.vue')},
       { path: '/form-three-start', component: () => import('pages/cmeTabs/FormThreeStart.vue')}
