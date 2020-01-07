@@ -32,6 +32,15 @@
           exact
           clickable>
             <q-item-label> {{ nav.label }} </q-item-label>
+            <q-linear-progress
+              size="25px"
+              :value="nav.progress"
+              v-if="nav.progress > 0"
+              color="accent">
+                <div class="absolute-full flex flex-center">
+                  <q-badge color="white" text-color="accent" :label="progressLabel(nav.progress)" />
+                </div>
+            </q-linear-progress>
         </q-item>
       </q-list>
     </q-drawer>
@@ -57,11 +66,13 @@ export default {
             navs: [
               {
                 label: 'Cat 1, Nav 1',
-                to: '/'
+                to: '/',
+                progress: 0.1
               },
               {
                 label: 'Cat 1, Nav 2',
-                to: '/testpage'
+                to: '/testpage',
+                progress: 0.55
               }
             ]
           },
@@ -72,11 +83,13 @@ export default {
             navs: [
               {
                 label: 'Cat 2, Nav 1',
-                to: '/'
+                to: '/',
+                progress: 0.2
               },
               {
                 label: 'Cat 2, Nav 2',
-                to: '/testpage'
+                to: '/testpage',
+                progress: 0.6
               }
             ]
           },
@@ -87,11 +100,13 @@ export default {
             navs: [
               {
                 label: 'Cat 3, Nav 1',
-                to: '/'
+                to: '/',
+                progress: 0.9
               },
               {
                 label: 'Cat 3, Nav 2',
-                to: '/testpage'
+                to: '/testpage',
+                progress: 1.00
               }
             ]
           }
@@ -104,6 +119,9 @@ export default {
       this.categories.forEach(el => el.active = false)
       this.categories[category].active = true
       this.$router.push(this.categories[category].defaultPage)
+    },
+    progressLabel(number) {
+      return (number *100).toFixed(2) + '%'
     }
   },
   computed: {
