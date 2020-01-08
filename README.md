@@ -12,10 +12,9 @@ potential useage in ticket runner.
 
  #### Planned features
 
--integration with firebase, including authentication and exploring potential user/group database structure.
--further translation into Vuex format (most components right now
-have their own data object in-file.)
--Continue adding different input types, like radio buttons, checkboxes, URL validation
+* integration with firebase, including authentication and exploring potential user/group database structure.
+* further translation into Vuex format (most components right now have their own data object in-file.)
+* Continue adding different input types, like radio buttons, checkboxes, URL validation
 
 ## Install the dependencies
 ```bash
