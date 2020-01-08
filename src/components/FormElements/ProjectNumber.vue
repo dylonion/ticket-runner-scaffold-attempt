@@ -4,11 +4,12 @@
     outlined
     :value="pnumber"
     @input="$emit('update:pnumber', $event)"
-    :rules="[val => productNumber(val) || 'Please enter a 6 digit project ID number']"
+    :rules="[val => isProjectNumber(val) || 'Please enter a 6 digit project ID number']"
     autofocus
     ref="pnumber"
-    label="Product ID"
+    label="Project ID"
     class="col">
+    lazy
     </q-input>
   </div>
 </template>
