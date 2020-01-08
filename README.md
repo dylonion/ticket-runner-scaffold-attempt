@@ -5,13 +5,10 @@ potential useage in ticket runner.
 
 #### Working (or semi working) features
 
- -Programmatically adding inputs that link to
-unique data objects in state. 
- -Compartmentalized validation functions in a separate file to
- import into vue.
- -Progress bars on different form page links. The values shown
- are hardcoded, not linked to real values.
- -Some quasar components like menu, drawer, q-input.
+* Programmatically adding inputs that link to unique data objects in state. 
+* Compartmentalized validation functions in a separate file to import into vue.
+* Progress bars on different form page links. The values shown are hardcoded, not linked to real values.
+* Some quasar components like menu, drawer, q-input.
 
  #### Planned features
 
