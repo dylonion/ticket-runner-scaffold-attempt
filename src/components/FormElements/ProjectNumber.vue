@@ -4,12 +4,12 @@
     outlined
     :value="pnumber"
     @input="$emit('update:pnumber', $event)"
-    :rules="[val => isProjectNumber(val) || 'Please enter a 6 digit project ID number']"
+    :rules="[val => isProjectNumber(val) || 'Product ID numbers should contain alphanumeric and period (.) characters only.']"
     autofocus
     ref="pnumber"
     label="Project ID"
+    lazy-rules
     class="col">
-    lazy
     </q-input>
   </div>
 </template>

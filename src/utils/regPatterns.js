@@ -1,5 +1,5 @@
 const 
-    projNumber = /^[0-9]{6}$/,
+    projNumber = /^([A-Za-z0-9.]+)?$/,
     previousSF = /^[0-9]{1}$/
 
 export const regPatterns = {

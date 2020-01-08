@@ -76,7 +76,9 @@ module.exports = function (ctx) {
         'QToggle',
         'QTabPanels',
         'QTabPanel',
-        'QSeparator'
+        'QSeparator',
+        'QRadio',
+        'QOptionGroup'
       ],
       directives: [],
 

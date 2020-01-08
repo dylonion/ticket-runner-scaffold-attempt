@@ -1,12 +1,26 @@
 <template>
   <div>
     <project-number 
-        :pnumber.sync="formToSubmit.name"
+        :pnumber.sync="formToSubmit.pnumber"
         ref="projectNumber" />
+    <prefilled 
+        :prefilled.sync="formToSubmit.prefilled"
+        ref="prefilled"
+    />
+    <radio-button
+        :answer.sync="formToSubmit.answer"
+        ref="radioButton"
+    />
+    <checkbox-group
+        :answer.sync="formToSubmit.checkAnswer"
+        ref="checkboxGroup"
+    />
+    <p>Options selected: {{ showOptions }}</p>
     <q-input 
         v-for="(item, index) in inputs"
         :key="index"
         outlined
+        lazy-rules
         v-model="item.vModel"
         ref="introduction"
         label="Introduction"
@@ -29,13 +43,25 @@ export default {
         return {
             formToSubmit: {
                 pnumber: '',
-                introduction: ''
+                introduction: '',
+                prefilled: 'Developed through a partnership between Medscape and',
+                answer: '',
+                checkAnswer: []
             },
             inputs: [
                 {
                     vModel: ''
                 }
             ]
+        }
+    },
+    computed: {
+        showOptions() {
+            let answerString = []
+            this.formToSubmit.checkAnswer.forEach((el)=>{
+                answerString.push(el)
+            })
+            return answerString.join(', ')
         }
     },
     methods: {
@@ -60,7 +86,10 @@ export default {
         }
     },
     components: {
-        'project-number' : require('components/FormElements/ProjectNumber.vue').default
+        'project-number' : require('components/FormElements/ProjectNumber.vue').default,
+        'prefilled' : require('components/FormElements/Prefilled.vue').default,
+        'radio-button' : require('components/FormElements/RadioButtons.vue').default,
+        'checkbox-group' : require('components/FormElements/CheckBoxGroup.vue').default
     }
 }
 </script>
