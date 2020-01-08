@@ -4,7 +4,7 @@
     outlined
     :value="pnumber"
     @input="$emit('update:pnumber', $event)"
-    :rules="[val => val > 0 && productNumber || 'Please enter a 9 digit project ID number']"
+    :rules="[val => productNumber(val) || 'Please enter a 6 digit project ID number']"
     autofocus
     ref="pnumber"
     label="Product ID"
@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import { patterns } from '../../utils/patterns.js'
+import { regPatterns } from '../../utils/regPatterns.js'
 
 export default {
     props: ['pnumber'],
     methods: {
-        ...patterns
+        ...regPatterns
     }
 }
 </script>
