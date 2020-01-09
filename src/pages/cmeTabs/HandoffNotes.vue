@@ -1,5 +1,17 @@
 <template>
   <div>
+    <q-input
+        filled
+        label="Email (Vuelidate Test)"
+        v-model="email"
+        @input="$v.email.$touch()"
+        :rules="[
+            val => $v.email.required || 'Email is required',
+            val => $v.email.email || 'Invalid email format'
+        ]"
+        ref="email"
+        lazy-rules
+    />
     <project-number 
         :pnumber.sync="formToSubmit.pnumber"
         ref="projectNumber" />
@@ -32,27 +44,47 @@
             text-color="black"
             @click="addInput"
             label="Add Input" />  
+        <q-btn
+            color="white"
+            text-color="black"
+            @click="showErrors"
+            label="Validate"
+        />
+        <div v-if="formToSubmit.error.length > 0">{{ formToSubmit.error }}</div>
     </div>
 </template>
 
 <script>
 import { regPatterns } from '../../utils/regPatterns.js'
+import { required, email } from 'vuelidate/lib/validators'
+import { Notify } from 'quasar'
 
 export default {
     data() {
         return {
+            email: '',
             formToSubmit: {
                 pnumber: '',
                 introduction: '',
                 prefilled: 'Developed through a partnership between Medscape and',
                 answer: '',
-                checkAnswer: []
+                checkAnswer: [],
+                error: ''
             },
             inputs: [
                 {
                     vModel: ''
                 }
             ]
+        }
+    },
+    validations: {
+        email: {
+            required,
+            email
+        },
+        password: {
+            required
         }
     },
     computed: {
@@ -66,6 +98,19 @@ export default {
     },
     methods: {
         ...regPatterns,
+        showErrors() {
+            let testRef = this.$refs.projectNumber.$refs.pnumber
+            testRef.validate()
+            if(testRef.innerErrorMessage && testRef.innerErrorMessage.length){
+                this.$q.notify({
+                    message: 'Problem(s) Detected:',
+                    caption: this.$refs.projectNumber.$refs.pnumber.innerErrorMessage,
+                    icon: 'announcement',
+                    closeBtn: 'X',
+                    timeout: 100000
+                })
+            }
+        },
         submitForm() {
             let failCheck = false;
             this.$refs.forEach(function(item) {
