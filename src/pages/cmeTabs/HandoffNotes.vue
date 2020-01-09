@@ -35,7 +35,7 @@
         lazy-rules
         v-model="item.vModel"
         ref="introduction"
-        label="Introduction"
+        label="Test word limit validation: 5 words"
         class="col"
         :rules="[val => isIntroduction(val) || 'Please enter five words or less.']"
     />
@@ -58,6 +58,7 @@
 import { regPatterns } from '../../utils/regPatterns.js'
 import { required, email } from 'vuelidate/lib/validators'
 import { Notify } from 'quasar'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
     data() {
@@ -88,6 +89,7 @@ export default {
         }
     },
     computed: {
+        ...mapGetters('activeForm', ['notifyCount']),
         showOptions() {
             let answerString = []
             this.formToSubmit.checkAnswer.forEach((el)=>{
@@ -97,17 +99,20 @@ export default {
         }
     },
     methods: {
+        ...mapActions('activeForm', ['setNotifyCount']),
         ...regPatterns,
         showErrors() {
             let testRef = this.$refs.projectNumber.$refs.pnumber
             testRef.validate()
-            if(testRef.innerErrorMessage && testRef.innerErrorMessage.length){
+            if(testRef.innerErrorMessage && testRef.innerErrorMessage.length && this.notifyCount <= 5){
+                this.setNotifyCount('+')
                 this.$q.notify({
                     message: 'Problem(s) Detected:',
                     caption: this.$refs.projectNumber.$refs.pnumber.innerErrorMessage,
                     icon: 'announcement',
                     closeBtn: 'X',
-                    timeout: 100000
+                    timeout: 5000,
+                    onDismiss: () => {this.setNotifyCount('-')}
                 })
             }
         },

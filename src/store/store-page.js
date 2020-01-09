@@ -1,4 +1,5 @@
 const state = {
+    notifyCount: 0,
     activeForm: {
         type: '',
         fields: {
@@ -12,6 +13,10 @@ const state = {
 }
 
 const mutations = {
+    setNotifyCount(state, payload) {
+        console.log('setNotifyCount: ', payload)
+        payload === '-' ? (state.notifyCount = state.notifyCount - 1) : (state.notifyCount = state.notifyCount + 1)
+    },
     setActiveForm(state, payload) {
         state.activeForm = payload
         console.log(state.activeForm)
@@ -22,6 +27,9 @@ const mutations = {
 }
 
 const actions = {
+    setNotifyCount({ commit }, payload) {
+        commit('setNotifyCount', payload)
+    },
     setActiveForm({ commit }, payload) {
         commit('setActiveForm', payload)
     },
@@ -33,6 +41,9 @@ const actions = {
 const getters = {
     getActiveForm: (state) => {
         return state.activeForm
+    },
+    notifyCount: (state) => {
+        return state.notifyCount
     }
 }
 
